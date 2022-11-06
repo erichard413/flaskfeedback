@@ -1,0 +1,33 @@
+{% extends 'base.html'  %}
+{% block title %}Users{% endblock %}
+
+{% block content %}
+
+<div>
+        
+    {% for category, msg in get_flashed_messages(with_categories=True) %}
+    <div class="alert alert-{{category}}">{{ msg }}</div>
+    {% endfor %}
+<h1>Users</h1>
+<ul>
+    {% for u in users %}
+    {% if u.is_admin %}
+    {% else %}
+    <li>
+        <a href="/users/{{u.username}}">{{u.username}}</a> {% if user.is_admin %} 
+        
+        <form action="/users/{{u.username}}/delete" method="POST">
+            <button class="btn-danger">Delete</button>
+        </form> 
+        {% endif %}
+    </li>
+    {% endif %}
+    
+    
+    
+    {%endfor%}
+</ul>
+    
+</div>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html'  %}
+{% block title %}Feedback{% endblock %}
+
+{% block content %}
+
+<div>
+        
+    {% for f in fbk %}
+    <p class="title">{{f.title}}</p>
+    <p>{{f.content}}</p>
+    
+    <p class="font-sm">Posted by: <a href="/users/{{f.users.username}}">{{f.users.username}}</a> </p>
+        <hr class="line">
+
+    
+    {%endfor%}
+</div>
+
+{% endblock %}

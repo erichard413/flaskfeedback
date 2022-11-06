@@ -1,0 +1,52 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@300&family=Passion+One:wght@700&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+  <nav class="navbar navbar-light bg-primary justify-content-between ">
+    <div class="container">
+      <a href="/" class="navbar-brand text-light">Flask-Feedback</a>
+      <ul class="nav navbar-nav flex-row float-right">
+        {% if session['curruser'] %}
+        
+        <li class="nav-item">
+          <a class="nav-link pr-3 text-light" href="/users/{{session['curruser']}}">{{session['curruser']}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link pr-3 text-light" href="/users">Users</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link pr-3 text-light" href="/logout">Log Out</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link pr-3 text-light" href="/login">Login</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" href="/register">Sign up</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container" style="margin-top: 2em">
+    {% for category, msg in get_flashed_messages(with_categories=True) %}
+    <div class="alert alert-{{category}}">{{ msg }}</div>
+    {% endfor %}
+
+    {% block content %}
+    {% endblock %}
+  </div>
+
+</body>
+
+</html>

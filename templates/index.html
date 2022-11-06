@@ -1,0 +1,23 @@
+{% extends 'base.html'  %}
+{% block title %}Feedback{% endblock %}
+
+{% block content %}
+
+<div>
+        
+    {% for f in fbk %}
+    <p class="title">{{f.title}}</p>
+    <p>{{f.content}}</p>
+    
+    <p class="font-sm">Posted by: <a href="/users/{{f.users.username}}">{{f.users.username}}</a> {% if user.is_admin %}
+        <form action="/feedback/{{f.id}}/delete" method="POST">
+            <button class="btn-danger">Delete</button>
+        </form>
+   {% endif %}
+    </p>
+        <hr class="line">
+
+    {%endfor%}
+</div>
+
+{% endblock %}

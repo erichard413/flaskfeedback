@@ -1,0 +1,52 @@
+{% extends 'userbase.html'  %}
+{% block title %}{{user.username}}{% endblock %}
+
+{% block content %}
+<div class="main">
+    <div class="userdetail">
+        <h1>User: {{user.username}}</h1>
+        <ul>
+            <li>Email Address: {{user.email}}</li>
+            <li>Name: {{user.first_name}} {{user.last_name}}</li>
+        </ul>
+        {% if user.username == session['curruser'] %}
+        <div class="feedback-btn">
+        <form action="/users/{{user.username}}/feedback/add">
+            <button class="btn-info addfeedbackbtn">Add Feedback</button>
+        </form>
+        {% endif %}
+        </div>
+        
+
+    </div>
+    <div class="feedback">
+        
+        {% for category, msg in get_flashed_messages(with_categories=True) %}
+        <div class="alert alert-{{category}}">{{ msg }}</div>
+        {% endfor %}
+
+
+        {% for f in fbk %}
+        <p class="title">{{f.title}}</p>
+        <p>{{f.content}}</p>
+        
+        {% if f.users.username == session['curruser'] %}
+        <div class="buttons">
+            
+            <form action="/feedback/{{f.id}}/update">
+                <button class="btn-info">Edit</button>
+            </form>
+            <form action="/feedback/{{f.id}}/delete" method="POST">
+                <button class="btn-danger">Delete</button>
+            </form>
+            
+        </div>
+        {% endif %}
+        <hr class="line">
+        
+        {%endfor%}
+    </div>
+</div>
+
+
+{% endblock %}

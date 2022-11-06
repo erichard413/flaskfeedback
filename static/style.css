@@ -1,0 +1,57 @@
+body {
+    font-family: 'Barlow Semi Condensed', sans-serif;
+}
+.main {
+    display: flex;
+}
+.userdetail {
+    display: inline-block;
+    position: fixed;
+    padding: 15px;
+    top: 71px;
+    background-color:aliceblue;
+    height: 100%;
+}
+.feedback {
+    display: block;
+    padding-left: 20rem;
+    background-color:white;
+}
+.buttons button {
+    border-radius: 15px;
+}
+.buttons form {
+    display: inline;
+}
+.buttons {
+    padding-top: 5px;
+}
+#content {
+    display: inline-block;
+    line-height: 150%;
+    padding-bottom: 100px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+.feedback-btn {
+    text-align: center;
+}
+.feedback-btn button {
+    border-radius: 15px;
+}
+.title {
+    font-size: 1.8rem;
+    font-style: bold;
+}
+.font-sm {
+    font-size: .7rem;
+}
+form button {
+    display: inline-block;
+    height: auto;
+    border-radius: 15px;
+    font-size: 10px;
+}
+li form {
+    display: inline-block;
+}
