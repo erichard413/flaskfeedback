@@ -3,12 +3,13 @@ from flask_debugtoolbar import DebugToolbarExtension
 from models import connect_db, db, User, Feedback
 from forms import UserForm, LogInForm, FeedbackForm
 from sqlalchemy.exc import IntegrityError
+import os
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "postgresql:///flask_feedback"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_ECHO"] = True
-app.config["SECRET_KEY"] = "pugsrcool24"
+app.config["SECRET_KEY"] = os.environ.get('SECRET_KEY', 'supersecret1')
 app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
 
