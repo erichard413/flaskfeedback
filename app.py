@@ -17,13 +17,11 @@ connect_db(app)
 
 toolbar = DebugToolbarExtension(app)
 
-session['curruser'] = None
-
 @app.route('/')
 def home_page():
     """takes user to home page"""
     fbk = Feedback.query.all()
-    if session['curruser'] is not None:
+    if session['curruser'] != None:
         user = User.query.get_or_404(session['curruser'])
     else:
         user = None;
