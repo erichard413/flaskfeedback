@@ -146,7 +146,7 @@ def not_found_err(e):
     fbk = Feedback.query.all()
     flash("404 - File not found!", "danger")
     return render_template("404.html", fbk=fbk)
-@app.errorhandler(404)
+@app.errorhandler(401)
 def not_authenticated_err(e):
     """displays when 401'd"""
     fbk = Feedback.query.all()
