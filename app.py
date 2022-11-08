@@ -21,7 +21,7 @@ toolbar = DebugToolbarExtension(app)
 def home_page():
     """takes user to home page"""
     fbk = Feedback.query.all()
-    if session['curruser'] != None:
+    if 'curruser' in session:
         user = User.query.get_or_404(session['curruser'])
     else:
         user = None;
@@ -70,7 +70,7 @@ def log_in():
 @app.route('/users/<username>')
 def secret_page(username):
     """Shhh... secret"""
-    if session['curruser']:
+    if 'curruser' in session:
         user = User.query.get_or_404(username)
         fbk = user.fbk
         return render_template("user.html", user=user, fbk=fbk)
@@ -81,8 +81,8 @@ def secret_page(username):
 @app.route('/logout')
 def log_out():
     """Log out user"""
-    if session['curruser']:
-        session['curruser'] = None
+    if 'curruser' in session:
+        session.pop('curruser')
     return redirect('/')
 @app.route('/feedback/<int:f_id>/update', methods=["GET","POST"])
 def update_feedback(f_id):
@@ -118,7 +118,7 @@ def delete_feedback(f_id):
 @app.route('/users/<username>/feedback/add', methods=["POST","GET"])
 def add_feedback(username):
     """GET: shows feedback form POST: Add feedback to database & display user page"""
-    if session['curruser']:
+    if 'curruser' in session:
         form = FeedbackForm()
         if form.validate_on_submit():
             title = form.title.data
