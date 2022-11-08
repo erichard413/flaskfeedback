@@ -1,6 +1,6 @@
 """seed file to create tables"""
 
-from models import db
+from models import db, User
 from app import app
 
 db.drop_all()
